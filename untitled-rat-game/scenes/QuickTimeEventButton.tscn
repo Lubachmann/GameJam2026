@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c0netvhtru8i5"]
+
+[ext_resource type="Texture2D" uid="uid://bsrqpxgb04jj8" path="res://assets/arrow-keys.png" id="1_cvq56"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sgkb"]
+atlas = ExtResource("1_cvq56")
+region = Rect2(0, 0, 16, 16)
+
+[node name="QuickTimeEventButton" type="TextureRect" unique_id=478196039]
+custom_minimum_size = Vector2(16, 16)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_vertical = 2
+texture = SubResource("AtlasTexture_6sgkb")
+expand_mode = 2
+stretch_mode = 4
