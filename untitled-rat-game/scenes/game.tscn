@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpk4y7encfy7y"]
 
 [ext_resource type="PackedScene" uid="uid://c0m00lb6u2h18" path="res://scenes/QuickTimeGame.tscn" id="1_p57ef"]
+[ext_resource type="Texture2D" uid="uid://dmnse2sxq4ybk" path="res://assets/backdrop-kitchen.png" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://jje2n8fnf3ri" path="res://scenes/rat.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cxbf3gfmvc8ww" path="res://scenes/owner.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://4gnm8vn0to62" path="res://scenes/fruit_basket.tscn" id="3_lnu2h"]
@@ -29,6 +30,11 @@ func _process(_delta: float) -> void:
 [node name="Game" type="Node2D" unique_id=1826130812]
 script = SubResource("GDScript_yqjtg")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=89757624]
+position = Vector2(0, -145)
+scale = Vector2(4, 4)
+texture = ExtResource("1_u5sy4")
+
 [node name="owner" parent="." unique_id=1615949849 instance=ExtResource("2_yqjtg")]
 position = Vector2(341, -6)
 
@@ -52,11 +58,6 @@ position = Vector2(4.5776367e-05, 66.75)
 scale = Vector2(1138, 134.5)
 mesh = SubResource("BoxMesh_uwrxv")
 texture = SubResource("MeshTexture_yqjtg")
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=749705385]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1963007662]
-motion_scale = Vector2(0.2, 0.2)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1539575169]
 position = Vector2(-2, -190)
