@@ -39,7 +39,7 @@ position = Vector2(-123, -58)
 position = Vector2(419, -39)
 
 [node name="Rat" parent="." unique_id=971363525 instance=ExtResource("1_uwrxv")]
-position = Vector2(-376, -45)
+position = Vector2(-376, -50)
 minigame_scene = ExtResource("1_p57ef")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=276837689]
@@ -59,8 +59,7 @@ texture = SubResource("MeshTexture_yqjtg")
 motion_scale = Vector2(0.2, 0.2)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1539575169]
-position = Vector2(-1, -30)
-zoom = Vector2(2, 2)
+position = Vector2(-2, -190)
 
 [node name="cage" parent="." unique_id=732598682 instance=ExtResource("5_iywne")]
 position = Vector2(-471, -4)
