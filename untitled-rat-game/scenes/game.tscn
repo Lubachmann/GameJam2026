@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cpk4y7encfy7y"]
+
+[ext_resource type="PackedScene" uid="uid://jje2n8fnf3ri" path="res://scenes/rat.tscn" id="1_uwrxv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uwrxv"]
+
+[sub_resource type="MeshTexture" id="MeshTexture_yqjtg"]
+
+[node name="Game" type="Node2D" unique_id=1826130812]
+
+[node name="Rat" parent="." unique_id=971363525 instance=ExtResource("1_uwrxv")]
+position = Vector2(1, -19)
+
+[node name="Camera2D" type="Camera2D" parent="Rat" unique_id=1539575169]
+zoom = Vector2(4, 4)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=276837689]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=679158757]
+shape = SubResource("WorldBoundaryShape2D_yqjtg")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D" unique_id=736846663]
+position = Vector2(4.5776367e-05, 17.25)
+scale = Vector2(1138, 35.5)
+mesh = SubResource("BoxMesh_uwrxv")
+texture = SubResource("MeshTexture_yqjtg")
