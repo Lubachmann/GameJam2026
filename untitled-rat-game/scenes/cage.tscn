@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c56abdnxsjs3d"]
+
+[ext_resource type="Script" uid="uid://csl35aqbowda2" path="res://scripts/cage.gd" id="1_f6fro"]
+[ext_resource type="Texture2D" uid="uid://ytqecy4le3lk" path="res://assets/cage.png" id="1_qqn5r"]
+[ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="2_pw5cj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pw5cj"]
+radius = 60.033325
+
+[node name="cage" type="Area2D" unique_id=732598682]
+script = ExtResource("1_f6fro")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2138659057]
+position = Vector2(-127, -114)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qqn5r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=170939515]
+shape = SubResource("CircleShape2D_pw5cj")
+
+[node name="Label" type="Label" parent="." unique_id=944724482]
+offset_top = -99.0
+offset_right = 136.0
+offset_bottom = -74.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("2_pw5cj")
+theme_override_font_sizes/font_size = 20
+text = "Drop Tissue (E)"
+
+[node name="Label2" type="Label" parent="." unique_id=185019221]
+offset_top = -125.0
+offset_right = 136.0
+offset_bottom = -100.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("2_pw5cj")
+theme_override_font_sizes/font_size = 20
+text = "Tissues: 0"

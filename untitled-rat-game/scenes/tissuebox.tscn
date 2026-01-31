@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b2lm74ddpgqbo"]
+
+[ext_resource type="Script" uid="uid://bh15max44miar" path="res://scripts/tissuebox.gd" id="1_e2krb"]
+[ext_resource type="Texture2D" uid="uid://dfqs1jswvy7is" path="res://assets/tissue-box.png" id="1_qkkf7"]
+[ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="3_o8aef"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cxt4"]
+radius = 104.019226
+
+[node name="Tissuebox" type="Area2D" unique_id=1399741967]
+script = ExtResource("1_e2krb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1644466243]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_qkkf7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1275731351]
+shape = SubResource("CircleShape2D_7cxt4")
+
+[node name="Label" type="Label" parent="." unique_id=784272676]
+offset_left = -68.0
+offset_top = -90.0
+offset_right = 68.0
+offset_bottom = -65.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/font = ExtResource("3_o8aef")
+theme_override_font_sizes/font_size = 20
+text = "Grab Tissue (E)"

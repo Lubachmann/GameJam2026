@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://jje2n8fnf3ri"]
 
 [ext_resource type="Script" uid="uid://cffrbt0pd5cec" path="res://scripts/rat.gd" id="1_77a1s"]
-[ext_resource type="Texture2D" uid="uid://hoytpt4wpkpb" path="res://assets/plyer.png" id="2_77a1s"]
+[ext_resource type="Texture2D" uid="uid://hoytpt4wpkpb" path="res://assets/player.png" id="2_77a1s"]
 [ext_resource type="Texture2D" uid="uid://dupna86qboy27" path="res://assets/mask-apple.png" id="3_acf8p"]
+[ext_resource type="Texture2D" uid="uid://w5qlo6cj837t" path="res://assets/tissue.png" id="4_3csnj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnna8"]
-radius = 7.0
+radius = 19.104973
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acf8p"]
 atlas = ExtResource("2_77a1s")
@@ -103,14 +104,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3csnj"]
+radius = 36.05551
+
 [node name="Rat" type="CharacterBody2D" unique_id=971363525]
 script = ExtResource("1_77a1s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=500073285]
-position = Vector2(2, 0)
+position = Vector2(0, -22)
 shape = SubResource("CircleShape2D_nnna8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=751363806]
+position = Vector2(-5, -24)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_po2hf")
 animation = &"walking"
 autoplay = "walking"
@@ -118,9 +124,28 @@ frame = 2
 frame_progress = 0.008951774
 
 [node name="masks" type="AnimatedSprite2D" parent="." unique_id=712560293]
-position = Vector2(0, -1)
+visible = false
+position = Vector2(-5, -27)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_7bnys")
 animation = &"walk"
 autoplay = "idle"
 frame = 3
 frame_progress = 0.8108008
+
+[node name="hand" type="Node2D" parent="." unique_id=1231950717]
+position = Vector2(-4, -16)
+
+[node name="tissue" type="Sprite2D" parent="hand" unique_id=1973912552]
+visible = false
+position = Vector2(-3, -13)
+rotation = 1.3683381
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_3csnj")
+centered = false
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=510911103]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1137826886]
+position = Vector2(0, -22)
+shape = SubResource("CircleShape2D_3csnj")
