@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hoytpt4wpkpb"
-path="res://.godot/imported/plyer.png-dd3c0419941b470bcfe7934d140d6bbd.ctex"
+path="res://.godot/imported/player.png-be2216fcaabb5c62aa2466cd9a5726a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plyer.png"
-dest_files=["res://.godot/imported/plyer.png-dd3c0419941b470bcfe7934d140d6bbd.ctex"]
+source_file="res://assets/player.png"
+dest_files=["res://.godot/imported/player.png-be2216fcaabb5c62aa2466cd9a5726a8.ctex"]
 
 [params]
 
