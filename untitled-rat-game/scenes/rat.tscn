@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://jje2n8fnf3ri"]
 
 [ext_resource type="Script" uid="uid://cffrbt0pd5cec" path="res://scripts/rat.gd" id="1_77a1s"]
-[ext_resource type="Texture2D" uid="uid://bv4p000ce7rg5" path="res://assets/plazer-temp.png" id="2_77a1s"]
+[ext_resource type="Texture2D" uid="uid://hoytpt4wpkpb" path="res://assets/plyer.png" id="2_77a1s"]
+[ext_resource type="Texture2D" uid="uid://dupna86qboy27" path="res://assets/mask-apple.png" id="3_acf8p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nnna8"]
+radius = 7.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_acf8p"]
 atlas = ExtResource("2_77a1s")
@@ -51,29 +55,72 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_77a1s"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bnys"]
+atlas = ExtResource("3_acf8p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po2hf"]
+atlas = ExtResource("3_acf8p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g0h3"]
+atlas = ExtResource("3_acf8p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ux2h"]
+atlas = ExtResource("3_acf8p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdlk1"]
+atlas = ExtResource("3_acf8p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7bnys"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bnys")
+}],
 "loop": true,
-"name": &"idle ",
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po2hf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g0h3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ux2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdlk1")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_nnna8"]
-radius = 7.0
 
 [node name="Rat" type="CharacterBody2D" unique_id=971363525]
 script = ExtResource("1_77a1s")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=751363806]
-sprite_frames = SubResource("SpriteFrames_po2hf")
-animation = &"idle"
-autoplay = "idle"
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=8197898]
-sprite_frames = SubResource("SpriteFrames_77a1s")
-animation = &"idle "
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=500073285]
 position = Vector2(2, 0)
 shape = SubResource("CircleShape2D_nnna8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=751363806]
+sprite_frames = SubResource("SpriteFrames_po2hf")
+animation = &"walking"
+autoplay = "walking"
+frame = 2
+frame_progress = 0.008951774
+
+[node name="masks" type="AnimatedSprite2D" parent="." unique_id=712560293]
+position = Vector2(0, -1)
+sprite_frames = SubResource("SpriteFrames_7bnys")
+animation = &"walk"
+autoplay = "idle"
+frame = 3
+frame_progress = 0.8108008

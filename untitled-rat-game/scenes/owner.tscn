@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cxbf3gfmvc8ww"]
+
+[ext_resource type="Texture2D" uid="uid://dh3shnj3g4ei" path="res://assets/knight.png" id="1_p6x76"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0o57"]
+atlas = ExtResource("1_p6x76")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2gwa"]
+atlas = ExtResource("1_p6x76")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t5n8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0o57")
+}],
+"loop": true,
+"name": &"back",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2gwa")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4w2j"]
+
+[node name="owner" type="CharacterBody2D" unique_id=1615949849]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=665383510]
+position = Vector2(0, -25)
+scale = Vector2(4.859375, 5.236328)
+sprite_frames = SubResource("SpriteFrames_t5n8x")
+animation = &"back"
+autoplay = "back"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=945717071]
+shape = SubResource("RectangleShape2D_x4w2j")
+disabled = true
