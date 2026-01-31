@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+@export var minigame_scene: PackedScene
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var mask = $masks
 @onready var hand = $hand
@@ -14,6 +15,7 @@ const JUMP_VELOCITY = -300.0
 var mask_equipped := false  # true when mask is on
 var carrying_tissue := false
 var amount_tissues := 0
+var playing = false
 
 
 func equip_mask():
@@ -56,11 +58,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	if Input.is_action_just_pressed("up"):
-		equip_mask()
-
-	if Input.is_action_just_pressed("down"):
-		unequip_mask()
+	#if Input.is_action_just_pressed("up"):
+		#equip_mask()
+#
+	#if Input.is_action_just_pressed("down"):
+		#unequip_mask()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -87,3 +89,20 @@ func _physics_process(delta):
 		animated_sprite.play("idle")
 		mask.play("idle")
 	move_and_slide()
+
+func spawn_minigame():
+	var instance = minigame_scene.instantiate()
+	add_child(instance)
+	await instance.minigame_finished
+	instance.queue_free()
+	playing = false
+	equip_mask()
+
+func _on_fruit_basket_body_entered(body: Node2D) -> void:
+	if body == self and not playing:
+		playing = true
+		spawn_minigame()
+
+
+func _on_fruit_basket_body_exited(_body: Node2D) -> void:
+	unequip_mask()

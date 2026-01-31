@@ -2,11 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dxkmcil0wdam0" path="res://scripts/quick_time_game.gd" id="1_11x2h"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7c517"]
-
 [node name="QuickTimeGame" type="CanvasLayer" unique_id=1783643359]
 script = ExtResource("1_11x2h")
-number_actions = 30
+number_actions = 20
 number_actions_shown = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=145790192]
@@ -14,7 +12,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7c517")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1346197557]
 layout_mode = 2
