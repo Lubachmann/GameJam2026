@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cpk4y7encfy7y"]
 
 [ext_resource type="PackedScene" uid="uid://jje2n8fnf3ri" path="res://scenes/rat.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://cxbf3gfmvc8ww" path="res://scenes/owner.tscn" id="2_yqjtg"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 
@@ -26,3 +27,11 @@ position = Vector2(4.5776367e-05, 17.25)
 scale = Vector2(1138, 35.5)
 mesh = SubResource("BoxMesh_uwrxv")
 texture = SubResource("MeshTexture_yqjtg")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=749705385]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1963007662]
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="owner" parent="ParallaxBackground/ParallaxLayer" unique_id=1615949849 instance=ExtResource("2_yqjtg")]
+position = Vector2(119, 26)
