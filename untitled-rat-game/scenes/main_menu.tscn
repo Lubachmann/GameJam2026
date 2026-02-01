@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cytfgsiyv2opl"]
 
 [ext_resource type="Texture2D" uid="uid://dpqmqpyp51855" path="res://assets/UntitledRatGameMenuTheme.png" id="1_bqqt6"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Script" uid="uid://beusou8lq580l" path="res://scripts/main_menu.gd" id="1_wu84c"]
 [ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="2_wu84c"]
 [ext_resource type="FontFile" uid="uid://d306fajonqv4g" path="res://assets/Daydream DEMO.otf" id="3_8ln24"]
 
@@ -69,7 +69,7 @@ text = "Untitled Rat Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HighScoresContainer" type="VBoxContainer" parent="."]
+[node name="HighScoresContainer" type="VBoxContainer" parent="." unique_id=554112488]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -84,7 +84,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="Title" type="Label" parent="HighScoresContainer"]
+[node name="Title" type="Label" parent="HighScoresContainer" unique_id=1523361091]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -94,7 +94,7 @@ theme_override_font_sizes/font_size = 36
 text = "HIGH SCORES"
 horizontal_alignment = 1
 
-[node name="Score1" type="Label" parent="HighScoresContainer"]
+[node name="Score1" type="Label" parent="HighScoresContainer" unique_id=66587180]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -104,7 +104,7 @@ theme_override_font_sizes/font_size = 32
 text = "1. ---"
 horizontal_alignment = 1
 
-[node name="Score2" type="Label" parent="HighScoresContainer"]
+[node name="Score2" type="Label" parent="HighScoresContainer" unique_id=187879298]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -114,7 +114,7 @@ theme_override_font_sizes/font_size = 28
 text = "2. ---"
 horizontal_alignment = 1
 
-[node name="Score3" type="Label" parent="HighScoresContainer"]
+[node name="Score3" type="Label" parent="HighScoresContainer" unique_id=1453820006]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8, 0.5, 0.2, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

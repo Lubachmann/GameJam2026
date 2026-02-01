@@ -62,33 +62,53 @@ func _process(delta):
 	if caught_rat:
 		catch_timer -= delta
 		if catch_timer <= 0:
-			# Resume normal behavior after catch
+			# Resume normal behavior after catch - go back to cooking
 			caught_rat = false
 			excl.visible = false
+			change_state(OwnerState.MINDING_BUSINESS)
 		return  # Don't do anything else while catching
 	
-	var player_detected := false
-	
-	# Check if player is detected (works in all states)
-	for body in get_overlapping_bodies():
-		if body == rat:
-			var in_hiding = hiding_spot.overlaps_body(rat)
-			var in_hiding2 = hiding_spot2.overlaps_body(rat)
-			if not (rat.mask_equipped and (in_hiding or in_hiding2)):
-				player_detected = true
-				catch_rat()
-			break
-	
-	# If player detected, override state and show exclamation
-	if player_detected:
-		# Stop and show exclamation (but don't resume movement yet)
-		velocity.x = 0
-		sprite.play("idle")
-		excl.visible = true
-		thought_bubble.visible = false
-		position += velocity * delta
-		return
+	# Only detect rat during ingredient-related states (not while cooking)
+	if should_detect_rat():
+		var player_detected := false
+		
+		# Check if player is detected
+		for body in get_overlapping_bodies():
+			if body == rat:
+				var in_hiding = hiding_spot.overlaps_body(rat)
+				var in_hiding2 = hiding_spot2.overlaps_body(rat)
+				
+				# Rat is safe if masked AND hiding in a spot that ISN'T the target
+				var is_safe_hiding = false
+				if rat.mask_equipped and (in_hiding or in_hiding2):
+					# Check if rat is hiding as the ingredient the owner wants
+					if target_object != null:
+						# If rat is hiding in the spot the owner wants, they get caught!
+						if (in_hiding and target_object == hiding_spot) or (in_hiding2 and target_object == hiding_spot2):
+							is_safe_hiding = false  # Caught! Hiding as the ingredient owner wants
+						else:
+							is_safe_hiding = true  # Safe! Hiding as a different ingredient
+					else:
+						is_safe_hiding = true  # No target yet, any hiding is safe
+				
+				if not is_safe_hiding:
+					player_detected = true
+					catch_rat()
+				break
+		
+		# If player detected, override state and show exclamation
+		if player_detected:
+			# Stop and show exclamation (but don't resume movement yet)
+			velocity.x = 0
+			sprite.play("idle")
+			excl.visible = true
+			thought_bubble.visible = false
+			position += velocity * delta
+			return
+		else:
+			excl.visible = false
 	else:
+		# Not detecting rat (e.g., while cooking), ensure exclamation is hidden
 		excl.visible = false
 	
 	# State machine
@@ -110,6 +130,11 @@ func _process(delta):
 	
 	# Move NPC
 	position += velocity * delta
+
+func should_detect_rat() -> bool:
+	# Only detect rat when actively getting ingredients (walking, grabbing, walking away)
+	# NOT while cooking or thinking
+	return current_state in [OwnerState.WALKING, OwnerState.GRABBING, OwnerState.WALKING_AWAY]
 
 func _process_minding_business(delta):
 	velocity.x = 0

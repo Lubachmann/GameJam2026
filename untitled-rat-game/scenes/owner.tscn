@@ -148,8 +148,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4w2j"]
-size = Vector2(66.75, 137.75)
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4w2j"]
+radius = 400.0
 
 [node name="owner" type="Area2D" unique_id=84421476]
 scale = Vector2(2, 2)
@@ -174,7 +174,7 @@ texture = ExtResource("4_apple")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=945717071]
 position = Vector2(32.625, -68.125)
-shape = SubResource("RectangleShape2D_x4w2j")
+shape = SubResource("CircleShape2D_x4w2j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=163690190]
 position = Vector2(35, -164.00002)

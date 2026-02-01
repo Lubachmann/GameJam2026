@@ -1,7 +1,7 @@
 extends Node2D
 
 # Game timer settings
-const GAME_DURATION = 60.0  # 1 minute in seconds
+const GAME_DURATION = 120.0  # 1 minute in seconds
 const GAME_OVER_DELAY = 3.0  # seconds to wait before returning to menu
 
 # Timer state
