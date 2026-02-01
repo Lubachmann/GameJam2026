@@ -9,13 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
+[ext_resource type="Texture2D" uid="uid://bsbhl3i2ymffg" path="res://assets/countertop-kitchen.png" id="7_countertop"]
 [ext_resource type="PackedScene" uid="uid://b0asg0fyo2bij" path="res://scenes/potatobag.tscn" id="8_gee14"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_uwrxv"]
-
-[sub_resource type="MeshTexture" id="MeshTexture_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=1826130812]
 process_mode = 3
@@ -42,15 +39,15 @@ position = Vector2(419, -39)
 position = Vector2(-375, -17)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=276837689]
+position = Vector2(0, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=679158757]
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D" unique_id=736846663]
-position = Vector2(4.5776367e-05, 66.75)
-scale = Vector2(1138, 134.5)
-mesh = SubResource("BoxMesh_uwrxv")
-texture = SubResource("MeshTexture_yqjtg")
+[node name="Countertop" type="Sprite2D" parent="StaticBody2D" unique_id=941990697]
+position = Vector2(-23, 153)
+scale = Vector2(3.876011, 4)
+texture = ExtResource("7_countertop")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1539575169]
 position = Vector2(-2, -190)
