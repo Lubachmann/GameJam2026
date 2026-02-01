@@ -15,7 +15,7 @@ enum QTEState { INACTIVE, ACTIVE, SUCCESS, FAILURE }
 var current_state = QTEState.INACTIVE
 
 # Key sequence
-var available_keys = ["left", "right", "ui_accept", "up", "down"]
+var available_keys = ["up", "down", "left", "right", "ui_accept"]
 var current_sequence = []
 var current_key_index = 0
 

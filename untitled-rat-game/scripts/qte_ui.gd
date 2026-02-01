@@ -9,8 +9,18 @@ extends CanvasLayer
 @onready var timer_label = $Overlay/CenterContainer/VBoxContainer/TimerLabel
 @onready var feedback_label = $Overlay/CenterContainer/VBoxContainer/FeedbackLabel
 
-# Key label references
-var key_labels = []
+# Arrow keys sprite atlas
+var atlas = preload("res://assets/arrow-keys.png")
+const ATLAS_COORDS = {
+	'up': Rect2i(0, 0, 16, 16),
+	'left': Rect2i(32, 0, 16, 16),
+	'right': Rect2i(64, 0, 16, 16),
+	'down': Rect2i(96, 0, 16, 16),
+	'space': Rect2i(128, 0, 32, 16)  # Space bar is wider (2 blocks)
+}
+
+# Key icon references
+var key_icons = []
 
 # Animation
 var pulse_time = 0.0
@@ -31,17 +41,17 @@ func _ready():
 
 func _process(delta):
 	# Pulse animation for current key
-	if visible and key_labels.size() > 0:
+	if visible and key_icons.size() > 0:
 		pulse_time += delta * 5.0  # Speed of pulse
 		var pulse = (sin(pulse_time) + 1.0) / 2.0  # 0 to 1
 		
 		# Find current key and pulse it
-		for i in range(key_labels.size()):
-			var label = key_labels[i]
-			if label.modulate == Color.WHITE or label.modulate.g > 0.9:
+		for i in range(key_icons.size()):
+			var icon = key_icons[i]
+			if icon.modulate == Color.WHITE or icon.modulate.g > 0.9:
 				# Current key - make it pulse
-				var scale_factor = 1.0 + pulse * 0.2
-				label.scale = Vector2(scale_factor, scale_factor)
+				var scale_factor = 1.0 + pulse * 0.3
+				icon.scale = Vector2(scale_factor, scale_factor)
 	
 	# Handle feedback message fadeout
 	if showing_feedback:
@@ -54,30 +64,26 @@ func _on_qte_started(sequence: Array):
 	print("[QTE UI] QTE Started with sequence: %s" % [sequence])
 	
 	# Clear previous keys
-	for label in key_labels:
-		label.queue_free()
-	key_labels.clear()
+	for icon in key_icons:
+		icon.queue_free()
+	key_icons.clear()
 	
-	# Create key labels
+	# Create key icons
 	for i in range(sequence.size()):
 		var key_action = sequence[i]
-		var label = Label.new()
+		var icon = create_key_icon(key_action)
 		
-		# Format the key name nicely
-		var key_text = format_key_name(key_action)
-		label.text = "[%s]" % key_text
-		
-		# Style
-		label.add_theme_font_size_override("font_size", 48)
-		label.modulate = Color.DIM_GRAY  # Not yet reached
-		
-		# Add to container
-		key_container.add_child(label)
-		key_labels.append(label)
+		if icon:
+			# Style
+			icon.modulate = Color.DIM_GRAY  # Not yet reached
+			
+			# Add to container
+			key_container.add_child(icon)
+			key_icons.append(icon)
 	
 	# Highlight first key
-	if key_labels.size() > 0:
-		key_labels[0].modulate = Color.WHITE
+	if key_icons.size() > 0:
+		key_icons[0].modulate = Color.WHITE
 	
 	# Reset timer
 	timer_bar.value = 100
@@ -90,22 +96,22 @@ func _on_qte_started(sequence: Array):
 	show_ui()
 
 func _on_qte_key_pressed(correct: bool, key_index: int):
-	if key_index >= key_labels.size():
+	if key_index >= key_icons.size():
 		return
 	
 	if correct:
 		print("[QTE UI] Key %d pressed correctly" % key_index)
 		# Mark as completed (green)
-		key_labels[key_index].modulate = Color.GREEN
-		key_labels[key_index].scale = Vector2.ONE
+		key_icons[key_index].modulate = Color.GREEN
+		key_icons[key_index].scale = Vector2.ONE
 		
 		# Highlight next key if exists
-		if key_index + 1 < key_labels.size():
-			key_labels[key_index + 1].modulate = Color.WHITE
+		if key_index + 1 < key_icons.size():
+			key_icons[key_index + 1].modulate = Color.WHITE
 	else:
 		print("[QTE UI] Wrong key pressed!")
 		# Mark current key as failed (red)
-		key_labels[key_index].modulate = Color.RED
+		key_icons[key_index].modulate = Color.RED
 		show_feedback("WRONG KEY!", Color.RED)
 
 func _on_qte_completed(success: bool):
@@ -150,18 +156,42 @@ func show_feedback(message: String, color: Color):
 	showing_feedback = true
 	feedback_timer = 1.0
 
-func format_key_name(action: String) -> String:
-	# Convert action names to display names
+func create_key_icon(action: String) -> TextureRect:
+	# Map input actions to arrow directions
+	var arrow_key = get_arrow_key_for_action(action)
+	
+	if not arrow_key in ATLAS_COORDS:
+		# Fallback: create a simple label if we don't have an icon
+		var label = Label.new()
+		label.text = "[?]"
+		label.add_theme_font_size_override("font_size", 48)
+		return null
+	
+	# Create texture rect with the appropriate arrow icon
+	var icon = TextureRect.new()
+	var atlas_texture = AtlasTexture.new()
+	atlas_texture.atlas = atlas
+	atlas_texture.region = ATLAS_COORDS[arrow_key]
+	
+	icon.texture = atlas_texture
+	icon.custom_minimum_size = Vector2(64, 64)  # Make icons nice and big
+	icon.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	
+	return icon
+
+func get_arrow_key_for_action(action: String) -> String:
+	# Map game actions to arrow key directions in the sprite
 	match action:
-		"left":
-			return "LEFT"
-		"right":
-			return "RIGHT"
-		"ui_accept":
-			return "SPACE"
+		"ui_left", "left":
+			return "left"
+		"ui_right", "right":
+			return "right"
 		"up":
-			return "UP"
+			return "up"
 		"down":
-			return "DOWN"
+			return "down"
+		"ui_accept", "space":
+			return "space"
 		_:
-			return action.to_upper()
+			return "up"  # Default fallback
