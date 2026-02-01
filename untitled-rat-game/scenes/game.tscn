@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://4gnm8vn0to62" path="res://scenes/fruit_basket.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://b3qte_ui_scene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
 script/source = "extends Node2D
@@ -63,3 +64,5 @@ zoom = Vector2(2, 2)
 
 [node name="cage" parent="." unique_id=732598682 instance=ExtResource("5_iywne")]
 position = Vector2(-471, -4)
+
+[node name="QTEUI" parent="." instance=ExtResource("6_qteui")]

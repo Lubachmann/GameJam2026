@@ -57,7 +57,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		
 	if Input.is_action_just_pressed("up"):
-		equip_mask()
+		QTESystem.start_mask_qte(self)
 
 	if Input.is_action_just_pressed("down"):
 		unequip_mask()
