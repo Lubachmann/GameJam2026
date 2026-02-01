@@ -1,15 +1,15 @@
-[gd_scene format=3 uid="uid://4gnm8vn0to62"]
+[gd_scene format=3 uid="uid://b0asg0fyo2bij"]
 
-[ext_resource type="Texture2D" uid="uid://cf4bcq5hsedku" path="res://assets/apple.png" id="1_ta5s5"]
+[ext_resource type="Texture2D" uid="uid://wkprpkkwty1l" path="res://assets/potato.png" id="1_i5gvq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhxoo"]
 radius = 31.0
 
-[node name="FruitBasket" type="Area2D" unique_id=123495385]
+[node name="Potatobag" type="Area2D" unique_id=123495385]
 scale = Vector2(4, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1581446921]
-texture = ExtResource("1_ta5s5")
+texture = ExtResource("1_i5gvq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1777059950]
 shape = SubResource("CircleShape2D_nhxoo")

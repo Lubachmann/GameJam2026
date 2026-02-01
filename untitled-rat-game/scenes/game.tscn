@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://b3qte_ui_scene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
+[ext_resource type="PackedScene" uid="uid://b0asg0fyo2bij" path="res://scenes/potatobag.tscn" id="8_gee14"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
 script/source = "extends Node2D
@@ -40,13 +41,13 @@ texture = ExtResource("1_u5sy4")
 position = Vector2(341, -6)
 
 [node name="FruitBasket" parent="." unique_id=123495385 instance=ExtResource("3_lnu2h")]
-position = Vector2(-123, -58)
+position = Vector2(-147, -58)
 
 [node name="Tissuebox" parent="." unique_id=1399741967 instance=ExtResource("4_lbhrr")]
 position = Vector2(419, -39)
 
 [node name="Rat" parent="." unique_id=971363525 instance=ExtResource("1_uwrxv")]
-position = Vector2(-376, -50)
+position = Vector2(-375, -17)
 minigame_scene = ExtResource("1_p57ef")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=276837689]
@@ -67,3 +68,8 @@ position = Vector2(-2, -190)
 position = Vector2(-471, -4)
 
 [node name="QTEUI" parent="." instance=ExtResource("6_qteui")]
+[node name="Potatobag" parent="." unique_id=1545829290 instance=ExtResource("8_gee14")]
+position = Vector2(188, -43)
+
+[connection signal="body_entered" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_entered"]
+[connection signal="body_exited" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_exited"]

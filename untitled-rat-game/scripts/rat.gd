@@ -10,8 +10,13 @@ const JUMP_VELOCITY = -300.0
 @onready var hand = $hand
 @onready var tissue = $hand/tissue
 @onready var pickup_area = $PickupArea
+@onready var transf = $transform
+var apple_texture = preload("res://assets/apple.png")
+var potato_texture = preload("res://assets/potato.png")
 @onready var tissue_box = get_node("/root/Game/Tissuebox")
 @onready var cage = get_node("/root/Game/cage")
+@onready var fruitbasket = get_node("/root/Game/FruitBasket")
+@onready var potatobag = get_node("/root/Game/Potatobag")
 var mask_equipped := false  # true when mask is on
 var carrying_tissue := false
 var amount_tissues := 0
@@ -19,13 +24,21 @@ var playing = false
 
 
 func equip_mask():
-	mask.visible = true
-	mask_equipped = true
+	for area in pickup_area.get_overlapping_areas():
+		if fruitbasket == area:
+			transf.texture = apple_texture
+			transf.visible = true
+		if potatobag == area:
+			transf.texture = potato_texture
+			transf.visible = true
+		
+		mask.visible = true
+		mask_equipped = true
 	
 func unequip_mask():
 	mask.visible = false
 	mask_equipped = false
-
+	transf.visible = false
 
 
 func _physics_process(delta):
@@ -99,7 +112,15 @@ func _on_fruit_basket_body_entered(body: Node2D) -> void:
 	if body == self and not playing:
 		playing = true
 		spawn_minigame()
+		
+func _on_potatobag_body_entered(body: Node2D) -> void:
+	if body == self and not playing:
+		playing = true
+		spawn_minigame()
 
 
 func _on_fruit_basket_body_exited(_body: Node2D) -> void:
+	unequip_mask()
+
+func _on_potatobag_body_exited(_body: Node2D) -> void:
 	unequip_mask()
