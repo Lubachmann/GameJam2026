@@ -10,6 +10,10 @@ const INITIAL_DIFFICULTY = 3  # starting number of keys
 const MAX_DIFFICULTY = 6  # maximum number of keys
 const TIME_SCALE_FACTOR = 0.2  # game speed during QTE (20%)
 
+# Sound effects
+var success_sound: AudioStreamPlayer
+var miss_sound: AudioStreamPlayer
+
 # QTE State
 enum QTEState { INACTIVE, ACTIVE, SUCCESS, FAILURE }
 var current_state = QTEState.INACTIVE
@@ -42,6 +46,17 @@ signal cooldown_ended
 signal qte_progress_updated(time_remaining: float, max_time: float)
 
 func _ready():
+	# Create audio players for sound effects
+	success_sound = AudioStreamPlayer.new()
+	success_sound.stream = load("res://assets/fx/success.wav")
+	success_sound.bus = "Master"
+	add_child(success_sound)
+	
+	miss_sound = AudioStreamPlayer.new()
+	miss_sound.stream = load("res://assets/fx/miss.wav")
+	miss_sound.bus = "Master"
+	add_child(miss_sound)
+	
 	print("[QTE System] Initialized - Difficulty: %d keys" % difficulty_level)
 
 func _process(delta):
@@ -127,6 +142,11 @@ func check_key_input(pressed_key: String):
 	if pressed_key == expected_key:
 		# Correct key!
 		print("[QTE System] Correct key %d/%d: %s" % [current_key_index + 1, current_sequence.size(), pressed_key])
+		
+		# Play success sound
+		if success_sound:
+			success_sound.play()
+		
 		qte_key_pressed.emit(true, current_key_index)
 		current_key_index += 1
 		
@@ -136,6 +156,11 @@ func check_key_input(pressed_key: String):
 	else:
 		# Wrong key!
 		print("[QTE System] Wrong key! Expected: %s, Got: %s" % [expected_key, pressed_key])
+		
+		# Play miss sound
+		if miss_sound:
+			miss_sound.play()
+		
 		qte_key_pressed.emit(false, current_key_index)
 		fail_qte()
 
