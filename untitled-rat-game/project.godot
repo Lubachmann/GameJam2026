@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 QTESystem="*res://scripts/qte_system.gd"
 ScoreManager="*res://scripts/score_manager.gd"
+BackgroundMusic="*res://scripts/background_music.gd"
 
 [display]
 
