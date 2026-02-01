@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://cytfgsiyv2opl"]
 
-[ext_resource type="Texture2D" uid="uid://dpqmqpyp51855" path="res://assets/UntitledRatGameMenuTheme.png" id="1_bqqt6"]
 [ext_resource type="Script" uid="uid://beusou8lq580l" path="res://scripts/main_menu.gd" id="1_wu84c"]
+[ext_resource type="Texture2D" uid="uid://d16melu62wr8s" path="res://assets/tutorial1.png" id="2_8ln24"]
 [ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="2_wu84c"]
 [ext_resource type="FontFile" uid="uid://d306fajonqv4g" path="res://assets/Daydream DEMO.otf" id="3_8ln24"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rtw2f"]
-texture = ExtResource("1_bqqt6")
-modulate_color = Color(0.61745477, 0.61745477, 0.6174547, 1)
+texture = ExtResource("2_8ln24")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa1go"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0.5882353)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -20,7 +19,7 @@ corner_radius_bottom_left = 40
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbmy8"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(1, 1, 1, 0.5882353)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -71,17 +70,14 @@ vertical_alignment = 1
 
 [node name="HighScoresContainer" type="VBoxContainer" parent="." unique_id=554112488]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = -120.0
-offset_right = -50.0
-offset_bottom = 120.0
+offset_left = -355.0
+offset_top = 42.0
+offset_right = -55.0
+offset_bottom = 282.0
 grow_horizontal = 0
-grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="HighScoresContainer" unique_id=1523361091]
@@ -126,21 +122,22 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1269483674]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -362.0
-offset_right = 250.0
-grow_horizontal = 2
+offset_left = -620.0
+offset_top = -330.0
+offset_right = -198.0
+offset_bottom = -26.0
+grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1990250564]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 30
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=564854484]
 layout_mode = 2
