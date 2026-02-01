@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://4gnm8vn0to62" path="res://scenes/fruit_basket.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
+[ext_resource type="PackedScene" uid="uid://bwtttdscplnqn" path="res://scenes/qte_ui.tscn" id="6_qteui"]
 [ext_resource type="Texture2D" uid="uid://bsbhl3i2ymffg" path="res://assets/countertop-kitchen.png" id="7_countertop"]
 [ext_resource type="PackedScene" uid="uid://b0asg0fyo2bij" path="res://scenes/potatobag.tscn" id="8_gee14"]
 
@@ -51,6 +51,7 @@ texture = ExtResource("7_countertop")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1539575169]
 position = Vector2(-2, -190)
+zoom = Vector2(1.8, 1.8)
 
 [node name="cage" parent="." unique_id=732598682 instance=ExtResource("5_iywne")]
 position = Vector2(-471, -4)
