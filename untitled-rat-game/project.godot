@@ -21,9 +21,9 @@ QTESystem="*res://scripts/qte_system.gd"
 
 [display]
 
-window/size/viewport_width=2048
-window/size/viewport_height=1440
+window/size/viewport_height=720
 
+window/size/viewport_width=1280
 [input]
 
 ui_left={
