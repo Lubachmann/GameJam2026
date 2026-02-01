@@ -1,17 +1,9 @@
-[gd_scene format=3 uid="uid://b3qte_ui_scene"]
+[gd_scene format=3 uid="uid://bwtttdscplnqn"]
 
-[ext_resource type="Script" path="res://scripts/qte_ui.gd" id="1_qte_ui"]
+[ext_resource type="Script" uid="uid://bhy272lcij738" path="res://scripts/qte_ui.gd" id="1_qte_ui"]
 [ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="2_font"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_overlay"]
-bg_color = Color(0, 0, 0, 0.7)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timer"]
-bg_color = Color(0.2, 0.8, 0.2, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[ext_resource type="AudioStream" uid="uid://bto2f4161pa1a" path="res://assets/fx/success.wav" id="3_smy0d"]
+[ext_resource type="AudioStream" uid="uid://fewgnpcrt8y4" path="res://assets/fx/miss.wav" id="4_q4o4r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timer_bg"]
 bg_color = Color(0.2, 0.2, 0.2, 1)
@@ -20,11 +12,18 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="QTEUI" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_timer"]
+bg_color = Color(0.2, 0.8, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="QTEUI" type="CanvasLayer" unique_id=575476606]
 layer = 100
 script = ExtResource("1_qte_ui")
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=1187142808]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -32,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7)
 
-[node name="CenterContainer" type="CenterContainer" parent="Overlay"]
+[node name="CenterContainer" type="CenterContainer" parent="Overlay" unique_id=1340787443]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,11 +45,11 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/CenterContainer" unique_id=1893553526]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="TitleLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer" unique_id=674934846]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
@@ -58,20 +57,20 @@ theme_override_font_sizes/font_size = 36
 text = "PRESS THE KEYS!"
 horizontal_alignment = 1
 
-[node name="KeyContainer" type="HBoxContainer" parent="Overlay/CenterContainer/VBoxContainer"]
+[node name="KeyContainer" type="HBoxContainer" parent="Overlay/CenterContainer/VBoxContainer" unique_id=623335737]
 layout_mode = 2
 theme_override_constants/separation = 30
 alignment = 1
 
-[node name="TimerBar" type="ProgressBar" parent="Overlay/CenterContainer/VBoxContainer"]
+[node name="TimerBar" type="ProgressBar" parent="Overlay/CenterContainer/VBoxContainer" unique_id=1687127281]
 custom_minimum_size = Vector2(400, 30)
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_timer")
 theme_override_styles/background = SubResource("StyleBoxFlat_timer_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_timer")
 value = 100.0
 show_percentage = false
 
-[node name="TimerLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer"]
+[node name="TimerLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer" unique_id=1517855228]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_font")
@@ -79,7 +78,7 @@ theme_override_font_sizes/font_size = 24
 text = "Time: 4.0s"
 horizontal_alignment = 1
 
-[node name="FeedbackLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer"]
+[node name="FeedbackLabel" type="Label" parent="Overlay/CenterContainer/VBoxContainer" unique_id=322110037]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
@@ -87,3 +86,9 @@ theme_override_fonts/font = ExtResource("2_font")
 theme_override_font_sizes/font_size = 32
 text = "WRONG KEY!"
 horizontal_alignment = 1
+
+[node name="SuccessSound" type="AudioStreamPlayer" parent="." unique_id=1846732786]
+stream = ExtResource("3_smy0d")
+
+[node name="MissSound" type="AudioStreamPlayer" parent="." unique_id=1532014009]
+stream = ExtResource("4_q4o4r")

@@ -32,7 +32,7 @@ func _process(_delta: float) -> void:
 script = SubResource("GDScript_yqjtg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=89757624]
-position = Vector2(0, -145)
+position = Vector2(0, -143)
 scale = Vector2(4, 4)
 texture = ExtResource("1_u5sy4")
 
@@ -57,13 +57,13 @@ position = Vector2(-375, -17)
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D" unique_id=736846663]
-position = Vector2(4.5776367e-05, 66.75)
-scale = Vector2(1138, 134.5)
+position = Vector2(-10.99995, 124.74999)
+scale = Vector2(1304.0001, 250.5)
 mesh = SubResource("BoxMesh_uwrxv")
 texture = SubResource("MeshTexture_yqjtg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1539575169]
-position = Vector2(-2, -190)
+position = Vector2(-2, -144)
 
 [node name="cage" parent="." unique_id=732598682 instance=ExtResource("5_iywne")]
 position = Vector2(-471, -4)
