@@ -8,7 +8,8 @@ extends CanvasLayer
 @onready var timer_bar = $Overlay/CenterContainer/VBoxContainer/TimerBar
 @onready var timer_label = $Overlay/CenterContainer/VBoxContainer/TimerLabel
 @onready var feedback_label = $Overlay/CenterContainer/VBoxContainer/FeedbackLabel
-
+@onready var success_sound_player = $SuccessSound
+@onready var miss_sound_player = $MissSound
 # Arrow keys sprite atlas
 var atlas = preload("res://assets/arrow-keys.png")
 const ATLAS_COORDS = {
@@ -105,6 +106,9 @@ func _on_qte_key_pressed(correct: bool, key_index: int):
 		key_icons[key_index].modulate = Color.GREEN
 		key_icons[key_index].scale = Vector2.ONE
 		
+		# Play sound
+		success_sound_player.play()
+
 		# Highlight next key if exists
 		if key_index + 1 < key_icons.size():
 			key_icons[key_index + 1].modulate = Color.WHITE
@@ -112,6 +116,10 @@ func _on_qte_key_pressed(correct: bool, key_index: int):
 		print("[QTE UI] Wrong key pressed!")
 		# Mark current key as failed (red)
 		key_icons[key_index].modulate = Color.RED
+		
+		# Play sound
+		miss_sound_player.play()
+		
 		show_feedback("WRONG KEY!", Color.RED)
 
 func _on_qte_completed(success: bool):

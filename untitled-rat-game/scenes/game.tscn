@@ -2,25 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://dmnse2sxq4ybk" path="res://assets/backdrop-kitchen.png" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://jje2n8fnf3ri" path="res://scenes/rat.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dw5kpqpwjv68b" path="res://scripts/game.gd" id="1_vtaks"]
 [ext_resource type="PackedScene" uid="uid://cxbf3gfmvc8ww" path="res://scenes/owner.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://4gnm8vn0to62" path="res://scenes/fruit_basket.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
+[ext_resource type="PackedScene" uid="uid://bwtttdscplnqn" path="res://scenes/qte_ui.tscn" id="6_qteui"]
 [ext_resource type="PackedScene" uid="uid://b0asg0fyo2bij" path="res://scenes/potatobag.tscn" id="8_gee14"]
-
-[sub_resource type="GDScript" id="GDScript_yqjtg"]
-script/source = "extends Node2D
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-"
+[ext_resource type="AudioStream" uid="uid://bhnqt6cwv7uld" path="res://assets/fx/UntitledRatGame.wav" id="10_kvpfn"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 
@@ -29,7 +18,7 @@ func _process(_delta: float) -> void:
 [sub_resource type="MeshTexture" id="MeshTexture_yqjtg"]
 
 [node name="Game" type="Node2D" unique_id=1826130812]
-script = SubResource("GDScript_yqjtg")
+script = ExtResource("1_vtaks")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=89757624]
 position = Vector2(0, -143)
@@ -69,6 +58,9 @@ position = Vector2(-2, -144)
 position = Vector2(-471, -4)
 
 [node name="QTEUI" parent="." unique_id=140382410 instance=ExtResource("6_qteui")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1724745422]
+stream = ExtResource("10_kvpfn")
 
 [connection signal="body_entered" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_entered"]
 [connection signal="body_exited" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_exited"]
