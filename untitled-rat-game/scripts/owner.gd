@@ -7,6 +7,7 @@ extends Area2D
 @onready var excl = $Sprite2D
 @onready var rat = get_node("/root/Game/Rat")
 @onready var hiding_spot = get_node("/root/Game/FruitBasket")
+@onready var hiding_spot2 = get_node("/root/Game/Potatobag")
 
 var velocity := Vector2.ZERO
 var moving_left := true  # track direction
@@ -19,7 +20,8 @@ func _process(delta):
 		if body == rat:
 			# 2️⃣ Check if player is wearing mask AND inside hiding spot
 			var in_hiding = hiding_spot.overlaps_body(rat)
-			if not (rat.mask_equipped and in_hiding):
+			var in_hiding2 = hiding_spot2.overlaps_body(rat)
+			if not (rat.mask_equipped and (in_hiding or in_hiding2)):
 				player_detected = true
 			break
 

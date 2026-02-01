@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://cpk4y7encfy7y"]
 
-[ext_resource type="PackedScene" uid="uid://c0m00lb6u2h18" path="res://scenes/QuickTimeGame.tscn" id="1_p57ef"]
 [ext_resource type="Texture2D" uid="uid://dmnse2sxq4ybk" path="res://assets/backdrop-kitchen.png" id="1_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://jje2n8fnf3ri" path="res://scenes/rat.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cxbf3gfmvc8ww" path="res://scenes/owner.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://4gnm8vn0to62" path="res://scenes/fruit_basket.tscn" id="3_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://b2lm74ddpgqbo" path="res://scenes/tissuebox.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c56abdnxsjs3d" path="res://scenes/cage.tscn" id="5_iywne"]
-[ext_resource type="PackedScene" uid="uid://b3qte_ui_scene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
+[ext_resource type="PackedScene" path="res://scenes/qte_ui.tscn" id="6_qteui"]
 [ext_resource type="PackedScene" uid="uid://b0asg0fyo2bij" path="res://scenes/potatobag.tscn" id="8_gee14"]
 
 [sub_resource type="GDScript" id="GDScript_yqjtg"]
@@ -43,12 +42,14 @@ position = Vector2(341, -6)
 [node name="FruitBasket" parent="." unique_id=123495385 instance=ExtResource("3_lnu2h")]
 position = Vector2(-147, -58)
 
+[node name="Potatobag" parent="." unique_id=1545829290 instance=ExtResource("8_gee14")]
+position = Vector2(188, -43)
+
 [node name="Tissuebox" parent="." unique_id=1399741967 instance=ExtResource("4_lbhrr")]
 position = Vector2(419, -39)
 
 [node name="Rat" parent="." unique_id=971363525 instance=ExtResource("1_uwrxv")]
 position = Vector2(-375, -17)
-minigame_scene = ExtResource("1_p57ef")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=276837689]
 
@@ -67,9 +68,7 @@ position = Vector2(-2, -190)
 [node name="cage" parent="." unique_id=732598682 instance=ExtResource("5_iywne")]
 position = Vector2(-471, -4)
 
-[node name="QTEUI" parent="." instance=ExtResource("6_qteui")]
-[node name="Potatobag" parent="." unique_id=1545829290 instance=ExtResource("8_gee14")]
-position = Vector2(188, -43)
+[node name="QTEUI" parent="." unique_id=140382410 instance=ExtResource("6_qteui")]
 
 [connection signal="body_entered" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_entered"]
 [connection signal="body_exited" from="FruitBasket" to="Rat" method="_on_fruit_basket_body_exited"]

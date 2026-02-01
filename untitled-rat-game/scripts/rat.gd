@@ -4,7 +4,6 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
-@export var minigame_scene: PackedScene
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var mask = $masks
 @onready var hand = $hand
@@ -20,7 +19,6 @@ var potato_texture = preload("res://assets/potato.png")
 var mask_equipped := false  # true when mask is on
 var carrying_tissue := false
 var amount_tissues := 0
-var playing = false
 
 
 func equip_mask():
@@ -68,10 +66,9 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+
 		
-	if Input.is_action_just_pressed("up"):
+	if Input.is_action_just_pressed("startQTE"):
 		QTESystem.start_mask_qte(self)
 
 	# Get the input direction and handle the movement/deceleration.
@@ -81,6 +78,7 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 		animated_sprite.play("walking")
+		unequip_mask()
 		mask.play("walk")
 
 		var facing_left := direction < 0
@@ -99,28 +97,3 @@ func _physics_process(delta):
 		animated_sprite.play("idle")
 		mask.play("idle")
 	move_and_slide()
-
-func spawn_minigame():
-	var instance = minigame_scene.instantiate()
-	add_child(instance)
-	await instance.minigame_finished
-	instance.queue_free()
-	playing = false
-	equip_mask()
-
-func _on_fruit_basket_body_entered(body: Node2D) -> void:
-	if body == self and not playing:
-		playing = true
-		spawn_minigame()
-		
-func _on_potatobag_body_entered(body: Node2D) -> void:
-	if body == self and not playing:
-		playing = true
-		spawn_minigame()
-
-
-func _on_fruit_basket_body_exited(_body: Node2D) -> void:
-	unequip_mask()
-
-func _on_potatobag_body_exited(_body: Node2D) -> void:
-	unequip_mask()
