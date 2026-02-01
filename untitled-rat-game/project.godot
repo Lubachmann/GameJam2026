@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 QTESystem="*res://scripts/qte_system.gd"
+ScoreManager="*res://scripts/score_manager.gd"
 
 [display]
 

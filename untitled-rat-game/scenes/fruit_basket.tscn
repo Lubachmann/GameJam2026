@@ -1,15 +1,33 @@
 [gd_scene format=3 uid="uid://4gnm8vn0to62"]
 
+[ext_resource type="Script" path="res://scripts/fruit_basket.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://cf4bcq5hsedku" path="res://assets/apple.png" id="1_ta5s5"]
+[ext_resource type="FontFile" uid="uid://b65jfxu53lp7o" path="res://assets/Almond Milky.otf" id="2_font"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhxoo"]
 radius = 31.0
 
 [node name="FruitBasket" type="Area2D" unique_id=123495385]
-scale = Vector2(4, 4)
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1581446921]
+scale = Vector2(4, 4)
 texture = ExtResource("1_ta5s5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1777059950]
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_nhxoo")
+
+[node name="InstructionLabel" type="Label" parent="." unique_id=1464358649]
+offset_left = -78.0
+offset_top = -98.0
+offset_right = 79.0
+offset_bottom = -73.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 20
+text = "Press \"W\" to Hide"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -19,7 +19,8 @@ var potato_texture = preload("res://assets/potato.png")
 var mask_equipped := false  # true when mask is on
 var carrying_tissue := false
 var amount_tissues := 0
-
+var is_frozen := false  # New: track if rat is frozen by owner
+var freeze_timer := 0.0  # New: timer for unfreezing
 
 func equip_mask():
 	for area in pickup_area.get_overlapping_areas():
@@ -38,8 +39,30 @@ func unequip_mask():
 	mask_equipped = false
 	transf.visible = false
 
+# New: Function to freeze/unfreeze the rat
+func set_frozen(frozen: bool, duration: float = 2.0):
+	is_frozen = frozen
+	if frozen:
+		freeze_timer = duration
+		velocity = Vector2.ZERO  # Stop all movement
+		animated_sprite.play("idle")
+		mask.play("idle")
+	else:
+		freeze_timer = 0.0
+
 
 func _physics_process(delta):
+	# Handle freeze timer
+	if is_frozen:
+		freeze_timer -= delta
+		if freeze_timer <= 0:
+			is_frozen = false
+		else:
+			# Don't process any input while frozen
+			velocity.y += get_gravity().y * delta  # Still apply gravity
+			move_and_slide()
+			return
+	
 	if Input.is_action_just_pressed("grab_tissue") and not carrying_tissue:
 
 		for area in pickup_area.get_overlapping_areas():

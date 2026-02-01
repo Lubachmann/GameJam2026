@@ -69,6 +69,61 @@ text = "Untitled Rat Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HighScoresContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -120.0
+offset_right = -50.0
+offset_bottom = 120.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="HighScoresContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 36
+text = "HIGH SCORES"
+horizontal_alignment = 1
+
+[node name="Score1" type="Label" parent="HighScoresContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 32
+text = "1. ---"
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="HighScoresContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 28
+text = "2. ---"
+horizontal_alignment = 1
+
+[node name="Score3" type="Label" parent="HighScoresContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.5, 0.2, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_wu84c")
+theme_override_font_sizes/font_size = 28
+text = "3. ---"
+horizontal_alignment = 1
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1269483674]
 layout_mode = 1
 anchors_preset = 7
