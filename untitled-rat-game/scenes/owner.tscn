@@ -3,10 +3,44 @@
 [ext_resource type="Script" uid="uid://c710r5d8kt3bj" path="res://scripts/owner.gd" id="1_q2gwa"]
 [ext_resource type="Texture2D" uid="uid://d3io6vs3wm3kg" path="res://assets/owner.png" id="2_v0o57"]
 [ext_resource type="Texture2D" uid="uid://bjsql6jbes4y1" path="res://assets/critical.png" id="3_q2gwa"]
+[ext_resource type="Texture2D" uid="uid://cf4bcq5hsedku" path="res://assets/apple.png" id="4_apple"]
+[ext_resource type="Texture2D" uid="uid://dxp34obp6qt0q" path="res://assets/bubble.png" id="5_bubble"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grab1"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(576, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grab2"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(672, 180, 96, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0o57"]
 atlas = ExtResource("2_v0o57")
 region = Rect2(192, 0, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding1"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(0, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding2"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(96, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding3"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(192, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding4"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(288, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding5"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(384, 180, 96, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_minding6"]
+atlas = ExtResource("2_v0o57")
+region = Rect2(480, 180, 96, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5n8x"]
 atlas = ExtResource("2_v0o57")
@@ -44,11 +78,45 @@ region = Rect2(672, 0, 96, 180)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_grab1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grab2")
+}],
+"loop": true,
+"name": &"grabbing",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v0o57")
 }],
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_minding6")
+}],
+"loop": true,
+"name": &"minding_business",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,9 +159,18 @@ script = ExtResource("1_q2gwa")
 position = Vector2(26.25, -80.37501)
 scale = Vector2(0.95312494, 0.90694445)
 sprite_frames = SubResource("SpriteFrames_t5n8x")
-animation = &"idle"
-autoplay = "walking"
-frame_progress = 0.62027603
+animation = &"minding_business"
+autoplay = "minding_business"
+
+[node name="ThoughtBubble" type="Sprite2D" parent="." unique_id=163690191]
+position = Vector2(70.649994, -152.9)
+scale = Vector2(0.92656255, 0.85625064)
+texture = ExtResource("5_bubble")
+
+[node name="Icon" type="Sprite2D" parent="ThoughtBubble" unique_id=163147041]
+position = Vector2(1.187191, -4.715317)
+scale = Vector2(0.7588537, 0.77098656)
+texture = ExtResource("4_apple")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=945717071]
 position = Vector2(32.625, -68.125)
